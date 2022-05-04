@@ -29,7 +29,16 @@ const reactionSchema = new Schema(
   
     return [month, day, year].join('-');}
     },
+    
   },
+  {
+    toJSON: {
+      getters: true,
+    },
+    id: false,
+  }
 );
 
-module.exports = reactionSchema;
+const Reaction = model('reaction', reactionSchema);
+
+module.exports = Reaction;
