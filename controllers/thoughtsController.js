@@ -24,8 +24,8 @@ module.exports = {
     Thought.create(req.body)
     .then((thought) => {
       return User.findOneAndUpdate(
-      { _id: req.params.userId },
-      { $push: { thoughts: thought._id } },
+      { _id: req.body.userId },
+      { $addToSet: { thoughts: thought._id } },
       { runValidators: true, new: true }
       );
     })
@@ -37,7 +37,7 @@ module.exports = {
   updateThought(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $Set: { thoughts: req.body } },
+      { $set: req.body },
       { runValidators: true, new: true }
     )
      .then((thought) => 
@@ -63,7 +63,7 @@ module.exports = {
   addNewReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $push: { reactions: req.body } },
+      { $addToSet: { reactions: req.body } },
       { runValidators: true, new: true }
     )
     .then((thought) =>
@@ -76,9 +76,9 @@ module.exports = {
 
   //remove a reaction by id
   deleteReaction(req, res) {
-    Thought.findOneAndDelete(
+    Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $pull: { reactions: req.body.reactionId } },
+      { $pull: { reactions: { _id: req.body.reactionId} } },
       { runValidators: true, new: true }
     )
     .then((thought) => 
