@@ -29,7 +29,7 @@ Follow basic contribution guidelines and coding etiquette, please.
 This project is covered by MIT
 
 ## Usage
-Video detailing usage can be found [here]( "Program Demo").
+Video detailing usage can be found [here](https://drive.google.com/file/d/1BBZsW2vHMINC_mHpGRvKprejqrJDElpy/view "Program Demo").
 
 
 ## Questions
